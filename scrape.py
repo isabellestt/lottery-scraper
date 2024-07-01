@@ -103,9 +103,11 @@ class Scraper:
         except NoSuchElementException:
             self.logger.info('No group 2 winner')
 
+        self.export_records()
+
     def export_records(self):
-
-
+        series = pd.Series(self.record, index=list(self.record.keys()))
+        series.to_csv('records.csv', index=False)
 
     def scrape_past_year(self):
         select = Select(self.driver.find_element(By.XPATH, "//select[@class='form-control selectDrawList']"))
