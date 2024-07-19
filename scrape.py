@@ -127,6 +127,14 @@ class Scraper:
             except WebDriverException as e:
                 print('error', WebDriverException)
 
+    def quit(self):
+        if self.get_session_status():
+            self.driver.quit()
+            logging.info('Webdriver session successfully terminated')
+        else:
+            logging.info('Webdriver session does not exist')
+
+
 def run_scraper():
     scraper = Scraper()
     scraper.start_session()
